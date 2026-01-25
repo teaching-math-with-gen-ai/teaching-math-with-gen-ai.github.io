@@ -1,2 +1,3 @@
-# teaching-math-with-generative-ai
-Website for the Teaching Mathematics with Generative AI group and seminar
+# Teaching Mathematics with Gen AI
+
+This repository hosts the public website for the *Teaching Mathematics with Gen AI* bimonthly online discussion series.
