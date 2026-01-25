@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Teaching Mathematics with Gen AI</title>
+  <meta name="description" content="A bimonthly online discussion series for math educators exploring critical, pedagogically grounded uses of generative AI." />
+  <style>
+    :root{
+      --bg:#0f172a;         /* slate-900 */
+      --panel:#111c33;      /* custom */
+      --text:#e5e7eb;       /* gray-200 */
+      --muted:#cbd5e1;      /* slate-300 */
+      --link:#93c5fd;       /* blue-300 */
+      --accent:#38bdf8;     /* sky-400 */
+      --border:rgba(229,231,235,.18);
+      --max: 980px;
+      --radius: 14px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: linear-gradient(180deg, var(--bg), #0b1224 60%, #081026);
+      color:var(--text);
+      line-height:1.45;
+    }
+    a{color:var(--link); text-decoration:underline}
+    a:hover{color:#bfdbfe}
+    header{
+      padding: 44px 18px 22px;
+    }
+    .wrap{max-width:var(--max); margin:0 auto}
+    .title{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:18px; flex-wrap:wrap;
+    }
+    h1{
+      margin:0;
+      font-size: clamp(28px, 3.2vw, 44px);
+      letter-spacing:.2px;
+    }
+    .subtitle{
+      margin:10px 0 0;
+      color:var(--muted);
+      max-width: 72ch;
+      font-size: 16px;
+    }
+    .pillrow{
+      margin-top:16px;
+      display:flex; gap:10px; flex-wrap:wrap;
+    }
+    .pill{
+      border:1px solid var(--border);
+      background: rgba(17, 28, 51, .65);
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: var(--text);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:18px;
+      padding: 10px 18px 38px;
+    }
+    @media (max-width: 860px){
+      .grid{grid-template-columns:1fr}
+    }
+    .card{
+      border:1px solid var(--border);
+      background: rgba(17, 28, 51, .75);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,.28);
+    }
+    .card .inner{padding: 18px}
+    .card h2{
+      margin:0 0 10px;
+      font-size: 18px;
+      letter-spacing:.2px;
+    }
+    .card p{margin: 10px 0; color: var(--muted)}
+    .btnrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    .btn{
+      display:inline-block;
+      padding:10px 12px;
+      border-radius: 10px;
+      border:1px solid var(--border);
+      background: rgba(56, 189, 248, .12);
+      color: var(--text);
+      text-decoration:none;
+      font-weight: 600;
+    }
+    .btn:hover{background: rgba(56, 189, 248, .18)}
+    .btn.secondary{background: rgba(148, 163, 184, .10)}
+    .schedule{
+      padding: 0 0 6px;
+    }
+    .event{
+      padding: 14px 18px;
+      border-top:1px solid var(--border);
+    }
+    .event:first-child{border-top:none}
+    .event .when{
+      font-weight:700;
+      color: var(--text);
+      margin-bottom:4px;
+    }
+    .event .talk{
+      font-size: 16px;
+      margin: 2px 0 6px;
+    }
+    .event .meta{
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .note{
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .flyerimg{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+    footer{
+      padding: 24px 18px 40px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .smallcaps{font-variant: all-small-caps; letter-spacing:.8px}
+    .hr{
+      height:1px; background: var(--border);
+      margin: 18px 0;
+    }
+    .cardsummary{
+      list-style:none;
+      cursor:pointer;
+      padding:20px 22px;
+     display:block;
+    }
+
+   .summarytitle{
+      display:block;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: .3px;
+      margin-bottom: 4px;
+    }
+  .summaryhint{
+      display:block;
+      font-size: 13px;
+      color: var(--muted);
+      padding-left: 2px; /* subtle alignment with title */
+   }
+   .carddetails[open] .summaryhint{
+      color: var(--accent);
+      font-weight: 600;
+   }
+  .carddetails {
+      margin-top: 12px;
+   }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap title">
+      <div>
+        <h1>Teaching Mathematics with Gen AI</h1>
+        <p class="subtitle">
+          A bimonthly online discussion series for math educators who want to integrate generative AI in ways that keep pedagogy and learning goals at the center.
+          Sessions feature a short presentation (about 15–20 minutes) followed by discussion and Q&amp;A.
+        </p>
+        <div class="pillrow">
+          <div class="pill">Every other Tuesday</div>
+          <div class="pill">12:00–12:50 pm Eastern Time</div>
+          <div class="pill">Online</div>
+        </div>
+
+        <div class="btnrow">
+          <a class="btn" href="#upcoming">Upcoming sessions</a>
+          <a class="btn secondary" href="https://groups.google.com/g/teaching-math-with-gen-ai">Join the Google Group: https://groups.google.com/g/teaching-math-with-gen-ai</a>
+        </div>
+
+        <p class="note">
+          Materials (slides, handouts) are posted only with speaker permission.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <main class="grid wrap">
+    <!-- Left: schedule -->
+    <section class="card" id="upcoming" aria-label="Upcoming sessions">
+      <div class="inner">
+        <h2>Upcoming sessions</h2>
+      </div>
+
+      <div class="schedule">
+        <div class="event">
+  <div class="when">Tuesday, January 20, 2026 • 12:00–12:50 pm Eastern Time</div>
+  <div class="talk"><strong>Natalie Naehrig</strong>: <em>AI as a Teaching Partner: Designing Standards-Based Calculus for Deeper Learning</em></div>
+  <div class="meta">Abstract: This talk walks through the AI supported workflow behind redesigning a Calculus course using Standards-Based Grading (SBG). It highlights practical strategies for using AI tools to organize learning standards, streamline writing and references, generate aligned problem pools, and analyze performance data to refine outcomes.</div>
+</div>
+
+<div class="event">
+  <div class="when">Tuesday, February 3, 2026 • 12:00–12:50 pm Eastern Time</div>
+  <div class="talk"><strong>Sheila Tabanli</strong> (Rutgers University): <em>Mistakes Welcome: AI-Powered, Gamified Learning for First-Year Students</em></div>
+  <div class="meta">Abstract: This workshop introduces AI-supported Error Lab activities that reframe mistakes and foster resilience and metacognition. It also showcases gamified, co-created learning modules where students help design content, building agency and strengthening STEM identity, with practical examples attendees can adapt.</div>
+</div>
+
+<div class="event">
+  <div class="when">Tuesday, February 17, 2026 • 12:00–12:50 pm Eastern Time</div>
+  <div class="talk"><strong>Heather Bolles</strong> (Iowa State University): <em>Integrating AI Tools in Calculus: Student Exploration, Evaluation, and Curriculum Insights</em></div>
+  <div class="meta">Abstract: This presentation describes a project integrating AI tools (LLMs and CASs) into calculus and differential equations through materials and assessments that prompt students to solve problems, engineer prompts, interpret results, and evaluate AI outputs. It reports student outcomes, survey feedback from instructors and students, and recommendations for curriculum improvement.</div>
+</div>
+      </div>
+
+<div class="hr"></div>
+
+<details class="carddetails">
+  <summary class="cardsummary">
+    <span class="summarytitle">Past sessions</span>
+    <span class="summaryhint">Click to expand</span>
+  </summary>
+
+<div class="schedule">
+  <div class="event">
+    <div class="when">Tuesday, December 9, 2025</div>
+    <div class="talk"><strong>Derek Bruff</strong>: <em>Crossing the Streams: Strategies for AI-Aware Teaching from Other Disciplines</em></div>
+  </div>
+
+  <div class="event">
+    <div class="when">Tuesday, November 25, 2025</div>
+    <div class="talk"><strong>Jon Beagley</strong>: <em>Transforming Lectures into OERs with Automatic Speech Recognition</em></div>
+  </div>
+
+  <div class="event">
+    <div class="when">Tuesday, November 11, 2025</div>
+    <div class="talk"><strong>Chloe Lewis</strong> (University of Wisconsin–Eau Claire): <em>Student validation of AI-generated proof</em></div>
+  </div>
+
+  <div class="event">
+    <div class="when">Tuesday, October 28, 2025</div>
+    <div class="talk"><strong>Deborah Hughes Hallett</strong>: <em>How Will Mathematics Be Learned in the Age of AI?</em></div>
+  </div>
+
+  <div class="event">
+    <div class="when">Tuesday, October 14, 2025</div>
+    <div class="talk"><strong>Christine von Renesse</strong> (Westfield State University): <em>Students Deciding When/How to use AI</em></div>
+  </div>
+
+  <div class="event">
+    <div class="when">Tuesday, September 30, 2025</div>
+    <div class="talk"><strong>Feryal Alayont</strong>: <em>An AI Study Tool for Students: NotebookLM</em></div>
+  </div>
+
+  <div class="event">
+    <div class="when">Tuesday, September 16, 2025</div>
+    <div class="talk"><strong>Nick Shay</strong>: <em>Access to Agency: Leveraging AI for Inclusive and Student-Driven Mathematics Teaching</em></div>
+  </div>
+
+  <div class="event">
+    <div class="when">Tuesday, September 2, 2025</div>
+    <div class="talk"><strong>Lew Ludwig</strong>: <em>Rethinking Assignments in the Age of AI</em></div>
+  </div>
+
+  <div class="event">
+    <div class="when">Tuesday, August 19, 2025</div>
+    <div class="talk"><strong>Gizem Karaali</strong>: <em>Writing an AI-Savvy Syllabus for Your Fall Classes</em></div>
+  </div>
+
+  <div class="event">
+    <div class="when">Tuesday, April 22, 2025</div>
+    <div class="talk"><strong>Angie Hodge-Zickerman</strong> &amp; <strong>Cindy York</strong>: <em>AI Said What? Teaching Students to Reflect on GenAI in Mathematics Learning</em></div>
+  </div>
+
+  <div class="event">
+    <div class="when">Tuesday, April 8, 2025</div>
+    <div class="talk"><strong>Lew Ludwig</strong>: <em>Custom GPTs as Virtual Tutors</em></div>
+  </div>
+
+  <div class="event">
+    <div class="when">Tuesday, March 25, 2025</div>
+    <div class="talk"><strong>Deb Hughes-Hallett</strong>: <em>AI in Mathematics: What can we do here and now</em></div>
+  </div>
+
+  <div class="event">
+    <div class="when">Tuesday, March 25, 2025</div>
+    <div class="talk"><strong>Justin Sherman</strong>: <em>Data and Generative AI Literacy for CGA Mathematics Students</em></div>
+  </div>
+
+  <div class="event">
+    <div class="when">Tuesday, March 11, 2025</div>
+    <div class="talk"><strong>Jane Zimmerman</strong>: <em>Khanmigo tutoring</em></div>
+  </div>
+
+  <div class="event">
+    <div class="when">Tuesday, February 25, 2025</div>
+    <div class="talk"><strong>Lew Ludwig</strong>: <em>How I write with AI</em></div>
+  </div>
+
+  <div class="event">
+    <div class="when">Tuesday, February 25, 2025</div>
+    <div class="talk"><strong>Bevin Maultsby</strong>: <em>How I used AI to improve my course design</em></div>
+  </div>
+
+  <div class="event">
+    <div class="when">Tuesday, February 11, 2025</div>
+    <div class="talk"><strong>Rachael Lund</strong>: <em>ChatGPT in a QL Course at MSU</em></div>
+  </div>
+
+  <div class="event">
+    <div class="when">Tuesday, February 11, 2025</div>
+    <div class="talk"><strong>Feryal Alayont</strong>: <em>ChatGPT as a Support Tool</em></div>
+  </div>
+</div>
+</details>
+
+
+<div class="hr hr-spaced"></div>
+      <div class="inner">
+        <h2>Contact and participation</h2>
+        <p>
+          For announcements and the Zoom link, join the Google Group:
+          <br />
+          <a href="https://groups.google.com/g/teaching-math-with-gen-ai">https://groups.google.com/g/teaching-math-with-gen-ai</a>
+        </p>
+        <p class="note">
+          If you would like to present, please contact the organizers via the Google Group.
+        </p>
+      </div>
+    </section>
+
+    <!-- Right: flyer -->
+    <aside class="card" aria-label="Flyer">
+      <img class="flyerimg" alt="Teaching Mathematics with Gen AI flyer" src="flyer.png" />
+      <div class="inner">
+        <h2>Flyer</h2>
+        <p>
+          This flyer is included as a visual summary. The schedule above is the authoritative source for upcoming sessions.
+        </p>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="wrap">
+    <div class="smallcaps">Teaching Mathematics with Gen AI</div>
+    <div>Last updated: <span id="lastUpdated"></span></div>
+
+    <script>
+      // Auto-fill a "last updated" stamp based on the viewer's browser time.
+      // You can remove this if you prefer to edit the date manually.
+      const d = new Date();
+      const opts = { year: "numeric", month: "long", day: "numeric" };
+      document.getElementById("lastUpdated").textContent = d.toLocaleDateString(undefined, opts);
+    </script>
+  </footer>
+</body>
+</html>
